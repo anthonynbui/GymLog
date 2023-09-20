@@ -1,0 +1,40 @@
+import { useState } from "react";
+import "./WorkoutForm.css";
+
+function WorkoutForm() {
+  let initialWorkouts = [
+    { id: 1, name: "Push-ups", sets: 3, reps: 15 },
+    { id: 2, name: "Squats", sets: 3, reps: 12 },
+    { id: 3, name: "Bench Press", sets: 5, reps: 12 },
+  ];
+
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  return (
+    <div class="list-group">
+      {initialWorkouts.map((item, index) => (
+        <a
+          href="#"
+          class={
+            selectedIndex === index
+              ? "list-group-item list-group-item-action active"
+              : "list-group-item list-group-item-action"
+          }
+          aria-current="true"
+          key={item}
+          onClick={() => {
+            setSelectedIndex(index);
+          }}
+        >
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{item.name}</h5>
+            <small style={{ marginLeft: "20px" }}>{item.sets}</small>
+          </div>
+          <p class="mb-1">{item.reps}</p>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+export default WorkoutForm;

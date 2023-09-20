@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/GymLog/static/css/main.79def752.css",
+    "main.js": "/GymLog/static/js/main.b55151e3.js",
+    "static/js/787.40660134.chunk.js": "/GymLog/static/js/787.40660134.chunk.js",
+    "static/media/WorkoutForm": "/GymLog/static/media/WorkoutForm.0dc722878f6230bd473e",
+    "index.html": "/GymLog/index.html",
+    "main.79def752.css.map": "/GymLog/static/css/main.79def752.css.map",
+    "main.b55151e3.js.map": "/GymLog/static/js/main.b55151e3.js.map",
+    "787.40660134.chunk.js.map": "/GymLog/static/js/787.40660134.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.79def752.css",
+    "static/js/main.b55151e3.js"
+  ]
+}
