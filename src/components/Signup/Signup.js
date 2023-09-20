@@ -1,9 +1,33 @@
 import { useState } from "react";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, googleProvider } from "../../config/auth";
+import { useNavigate, useLocation } from "react-router-dom";
+import "firebase/firestore";
+import "firebase/auth";
 function Signup() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("valid user");
+        navigate("/feed");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  };
 
   return (
     <div className="App">
@@ -40,7 +64,16 @@ function Signup() {
         ></input>
 
         <div classname="buttons">
-          <button className="button-50">Signup</button>
+          <button
+            className="button-50"
+            onClick={
+              password === password2
+                ? onSubmit
+                : console.log("password not same")
+            }
+          >
+            Signup
+          </button>
         </div>
       </header>
     </div>

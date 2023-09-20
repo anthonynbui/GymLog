@@ -1,4 +1,15 @@
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/auth";
+import { useNavigate } from "react-router-dom";
+
 function Navbar() {
+  const navigate = useNavigate();
+
+  const onSignout = () => {
+    auth.signOut();
+    navigate("/");
+  };
+
   return (
     <div class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -15,6 +26,16 @@ function Navbar() {
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">
                 Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                onClick={onSignout}
+              >
+                Signout
               </a>
             </li>
           </ul>

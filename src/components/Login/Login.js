@@ -11,42 +11,21 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import { auth, googleProvider } from "../../config/auth";
+import { app, auth, googleProvider } from "../../config/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-
-function SetupFirebase() {
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBk-lnB3ucQ_zRenCMbCJHyjsFbsYD_SYY",
-    authDomain: "gymlog-1c8d9.firebaseapp.com",
-    projectId: "gymlog-1c8d9",
-    storageBucket: "gymlog-1c8d9.appspot.com",
-    messagingSenderId: "273770221009",
-    appId: "1:273770221009:web:49370d87d44b0d31a224f0",
-    measurementId: "G-KR0SRQQC60",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-}
 
 function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const redirectNow = () => {
-    const redirectTo = location.search.replace("?redirectTo=", "");
-    navigate(redirectTo ? redirectTo : "/feed");
-  };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // const AuthContext = createContext();
 
   console.log(email);
   console.log(password);
@@ -59,6 +38,7 @@ function Login() {
         // Signed in
         const user = userCredential.user;
         console.log("valid user");
+        console.log(user.email);
         navigate("/feed");
         // ...
       })
@@ -70,9 +50,14 @@ function Login() {
       });
   };
 
+  const navigateToSignup = () => {
+    navigate("/signup"); // Navigate to "/feed" when clicked
+  };
+
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      navigate("/feed");
     } catch (err) {
       console.error(err);
     }
@@ -82,6 +67,7 @@ function Login() {
     <div className="App">
       <header className="App-header">
         <h1> GymLog</h1>
+        <h4> Email</h4>
         <input
           className="text-input"
           type="text"
@@ -90,6 +76,7 @@ function Login() {
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         ></input>
+        <h4> Password </h4>
         <input
           className="text-input"
           type="password"
@@ -110,7 +97,10 @@ function Login() {
           </button>
         </div>
         <div>
-          <h5> Don't have an account? Click here to signup!</h5>
+          <h5 onClick={navigateToSignup}>
+            {" "}
+            Don't have an account? Click here to signup!
+          </h5>
         </div>
       </header>
     </div>

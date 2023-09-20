@@ -1,4 +1,7 @@
-import { MouseEvent, useState } from "react";
+import { useEffect, useState } from "react";
+import "./Listgroup.css";
+import { db } from "../../config/auth";
+import { getDocs, collection } from "firebase/firestore";
 
 function Listgroup() {
   let items = [
@@ -7,11 +10,31 @@ function Listgroup() {
     ["anthonynbui", "5 days ago", "Legs"],
   ];
 
+  const [workoutList, setWorkoutList] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const workoutCollectionsRef = collection(db, "workouts");
+
+  useEffect(() => {
+    const getWorkoutList = async () => {
+      try {
+        const data = await getDocs(workoutCollectionsRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setWorkoutList(filteredData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getWorkoutList();
+  }, []);
 
   return (
     <div class="list-group">
-      {items.map((item, index) => (
+      {workoutList.map((item, index) => (
         <a
           href="#"
           class={
@@ -26,10 +49,10 @@ function Listgroup() {
           }}
         >
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{item[0]}</h5>
-            <small style={{ marginLeft: "20px" }}>{item[1]}</small>
+            <h5 class="mb-1">{item.exercise}</h5>
+            {/* <small style={{ marginLeft: "20px" }}>{item.reps}</small> */}
           </div>
-          <p class="mb-1">{item[2]}</p>
+          <p class="mb-1">{item.weight + " x " + item.reps}</p>
         </a>
       ))}
     </div>
