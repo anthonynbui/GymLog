@@ -2,14 +2,9 @@ import { useEffect, useState } from "react";
 import "./Listgroup.css";
 import { db } from "../../config/auth";
 import { getDocs, collection } from "firebase/firestore";
+import workoutForm from "./WorkoutForm";
 
 function Listgroup() {
-  let items = [
-    ["anthonynbui", "3 days ago", "Chest"],
-    ["anthonynbui", "3 days ago", "Back and Bis"],
-    ["anthonynbui", "5 days ago", "Legs"],
-  ];
-
   const [workoutList, setWorkoutList] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -56,6 +51,7 @@ function Listgroup() {
         </a>
       ))}
     </div>
+    
   );
 }
 
