@@ -3,48 +3,41 @@ import { useState } from "react";
 import { db } from "../../config/auth";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import AddWorkoutButton from "./AddWorkoutButton";
+import TextField from "@mui/material/TextField";
 
-function WorkoutForm() {
-  const [newExercise, setNewExercise] = useState("");
-  const [newWeight, setNewWeight] = useState("");
-  const [newReps, setNewReps] = useState("");
-
-  const workoutCollectionsRef = collection(db, "workouts");
-
-  const onAddWorkout = async () => {
-    try {
-      await addDoc(workoutCollectionsRef, {
-        exercise: newExercise,
-        reps: newReps,
-        weight: newWeight,
-      });
-      
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+function WorkoutForm({
+  newExercise,
+  setNewExercise,
+  newWeight,
+  setNewWeight,
+  newReps,
+  setNewReps,
+  onAddWorkout,
+}) {
   return (
     <div id="form">
       <form>
         <div class="form-group">
           <h2>Enter exercise</h2>
-          <input
-            placeholder="Exercise"
+          <TextField
+            variant="outlined"
+            label="Exercise"
             onChange={(event) => setNewExercise(event.target.value)}
-          ></input>
+          />
           <h2>Enter weight</h2>
-          <input
-            placeholder="Weight"
+          <TextField
+            variant="outlined"
+            label="Weight"
             onChange={(event) => setNewWeight(event.target.value)}
-          ></input>
+          />
           <h2>Enter reps</h2>
-          <input
-            placeholder="Reps"
+          <TextField
+            variant="outlined"
+            label="Reps"
             onChange={(event) => setNewReps(event.target.value)}
-          ></input>
-          <AddWorkoutButton addWorkoutHandler={onAddWorkout}/>
+          />
         </div>
+        <AddWorkoutButton addWorkoutHandler={onAddWorkout} />
       </form>
     </div>
   );

@@ -2,21 +2,26 @@
     margin-bottom: 30px;
 }
 
+.form-group {
+    color: white;
+}
+
 #form {
-    background-color:#5c5c5c;
+    background-color:rgb(170, 170, 170);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 30px;
     width: 500px;
-    height: 400px;
+    height: 500px;
 }
 
 h2 {
     margin-top: 20px;
+    color: black;
 }
 
 input {
     font-size: 20px;
-    
+    margin-bottom: 20px;
 }

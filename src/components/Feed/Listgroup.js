@@ -4,29 +4,7 @@ import { db } from "../../config/auth";
 import { getDocs, collection } from "firebase/firestore";
 import workoutForm from "./WorkoutForm";
 
-function Listgroup() {
-  const [workoutList, setWorkoutList] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  const workoutCollectionsRef = collection(db, "workouts");
-
-  useEffect(() => {
-    const getWorkoutList = async () => {
-      try {
-        const data = await getDocs(workoutCollectionsRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setWorkoutList(filteredData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getWorkoutList();
-  }, []);
-
+function Listgroup({ workoutList, selectedIndex, setSelectedIndex, setSelectedWorkout}) {
   return (
     <div class="list-group">
       {workoutList.map((item, index) => (
@@ -41,17 +19,16 @@ function Listgroup() {
           key={item}
           onClick={() => {
             setSelectedIndex(index);
+            setSelectedWorkout(item);
           }}
         >
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{item.exercise}</h5>
-            {/* <small style={{ marginLeft: "20px" }}>{item.reps}</small> */}
           </div>
           <p class="mb-1">{item.weight + " x " + item.reps}</p>
         </a>
       ))}
     </div>
-    
   );
 }
 

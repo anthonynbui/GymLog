@@ -1,10 +1,17 @@
 import "./AddWorkoutButton.css";
 
-function AddWorkoutButton({addWorkoutHandler}) {
+import Button from "@mui/material/Button";
+
+function AddWorkoutButton({ addWorkoutHandler }) {
   return (
-    <button type="button" class="btn btn-light" onClick={addWorkoutHandler}>
+    <Button
+      component="label"
+      variant="contained"
+      size="large"
+      onClick={addWorkoutHandler}
+    >
       Add Workout
-    </button>
+    </Button>
   );
 }
 
