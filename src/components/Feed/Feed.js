@@ -14,6 +14,8 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  query,
+  where
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
@@ -30,10 +32,12 @@ function Feed() {
   const [newReps, setNewReps] = useState("");
 
   const workoutCollectionsRef = collection(db, "workouts");
+  const userCollectionsRef = collection(db, "users");
 
   const getWorkoutList = async () => {
     try {
-      const data = await getDocs(workoutCollectionsRef);
+      const userWorkoutsRef = query(workoutCollectionsRef, where("userID", "==", auth.currentUser.uid));
+      const data = await getDocs(userWorkoutsRef);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -54,6 +58,7 @@ function Feed() {
         exercise: newExercise,
         reps: newReps,
         weight: newWeight,
+        userID: auth.currentUser.uid
       });
     } catch (err) {
       console.error(err);
