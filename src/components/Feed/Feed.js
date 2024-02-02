@@ -3,6 +3,7 @@ import { AppBar, Box, Toolbar, Typography, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Listgroup from "./Listgroup";
 import WorkoutForm from "./WorkoutForm";
+import Alert from "@mui/material/Alert";
 
 import AddWorkoutButton from "./AddWorkoutButton";
 import Navbar from "../Navbar/Navbar";
@@ -15,11 +16,11 @@ import {
   deleteDoc,
   doc,
   query,
-  where
+  where,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Feed() {
   const UserEmail = auth.currentUser.email;
@@ -30,19 +31,28 @@ function Feed() {
   const [newExercise, setNewExercise] = useState("");
   const [newWeight, setNewWeight] = useState("");
   const [newReps, setNewReps] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const workoutCollectionsRef = collection(db, "workouts");
   const userCollectionsRef = collection(db, "users");
 
   const getWorkoutList = async () => {
     try {
-      const userWorkoutsRef = query(workoutCollectionsRef, where("userID", "==", auth.currentUser.uid));
+      const userWorkoutsRef = query(
+        workoutCollectionsRef,
+        where("userID", "==", auth.currentUser.uid)
+      );
       const data = await getDocs(userWorkoutsRef);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
       setWorkoutList(filteredData);
+
+      // Set alert state
+      setShowAlert(true);
+      setAlertMessage("Workout added successfully!");
     } catch (err) {
       console.error(err);
     }
@@ -54,11 +64,13 @@ function Feed() {
 
   const onAddWorkout = async () => {
     try {
+      const currentDate = new Date();
       await addDoc(workoutCollectionsRef, {
         exercise: newExercise,
         reps: newReps,
         weight: newWeight,
-        userID: auth.currentUser.uid
+        userID: auth.currentUser.uid,
+        date: currentDate.toISOString(),
       });
     } catch (err) {
       console.error(err);
@@ -83,13 +95,22 @@ function Feed() {
       <Navbar />
       <header className="App-header">
         <h1>Welcome {UserEmail}!</h1>
+        {showAlert && (
+          <Alert severity="success" onClose={() => setShowAlert(false)}>
+            {alertMessage}
+          </Alert>
+        )}
         <Listgroup
           workoutList={workoutList}
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
           setSelectedWorkout={setSelectedWorkout}
         />
-        <Button startIcon={<DeleteIcon />} variant="contained" onClick={() => onDeleteWorkout(selectedWorkout.id)}>
+        <Button
+          startIcon={<DeleteIcon />}
+          variant="contained"
+          onClick={() => onDeleteWorkout(selectedWorkout.id)}
+        >
           Delete selected workout
         </Button>
         <WorkoutForm
