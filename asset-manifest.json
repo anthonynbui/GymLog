@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.727e5198.css",
-    "main.js": "/static/js/main.1b0dd104.js",
-    "static/js/787.40660134.chunk.js": "/static/js/787.40660134.chunk.js",
-    "index.html": "/index.html",
-    "main.727e5198.css.map": "/static/css/main.727e5198.css.map",
-    "main.1b0dd104.js.map": "/static/js/main.1b0dd104.js.map",
-    "787.40660134.chunk.js.map": "/static/js/787.40660134.chunk.js.map"
+    "main.css": "/GymLog/static/css/main.727e5198.css",
+    "main.js": "/GymLog/static/js/main.c8f013b3.js",
+    "static/js/787.40660134.chunk.js": "/GymLog/static/js/787.40660134.chunk.js",
+    "index.html": "/GymLog/index.html",
+    "main.727e5198.css.map": "/GymLog/static/css/main.727e5198.css.map",
+    "main.c8f013b3.js.map": "/GymLog/static/js/main.c8f013b3.js.map",
+    "787.40660134.chunk.js.map": "/GymLog/static/js/787.40660134.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.727e5198.css",
-    "static/js/main.1b0dd104.js"
+    "static/js/main.c8f013b3.js"
   ]
 }
