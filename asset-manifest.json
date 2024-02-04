@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/gymlog/static/css/main.79def752.css",
-    "main.js": "/gymlog/static/js/main.30df35dc.js",
-    "static/js/787.40660134.chunk.js": "/gymlog/static/js/787.40660134.chunk.js",
-    "static/media/WorkoutForm": "/gymlog/static/media/WorkoutForm.0dc722878f6230bd473e",
-    "index.html": "/gymlog/index.html",
-    "main.79def752.css.map": "/gymlog/static/css/main.79def752.css.map",
-    "main.30df35dc.js.map": "/gymlog/static/js/main.30df35dc.js.map",
-    "787.40660134.chunk.js.map": "/gymlog/static/js/787.40660134.chunk.js.map"
+    "main.css": "/static/css/main.727e5198.css",
+    "main.js": "/static/js/main.1b0dd104.js",
+    "static/js/787.40660134.chunk.js": "/static/js/787.40660134.chunk.js",
+    "index.html": "/index.html",
+    "main.727e5198.css.map": "/static/css/main.727e5198.css.map",
+    "main.1b0dd104.js.map": "/static/js/main.1b0dd104.js.map",
+    "787.40660134.chunk.js.map": "/static/js/787.40660134.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.79def752.css",
-    "static/js/main.30df35dc.js"
+    "static/css/main.727e5198.css",
+    "static/js/main.1b0dd104.js"
   ]
 }
