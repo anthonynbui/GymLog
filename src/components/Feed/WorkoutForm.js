@@ -37,7 +37,11 @@ function WorkoutForm({
             onChange={(event) => setNewReps(event.target.value)}
           />
         </div>
-        <AddWorkoutButton addWorkoutHandler={onAddWorkout} />
+        <div style={{ marginTop: "20px" }}>
+          {" "}
+          {/* Adding margin top */}
+          <AddWorkoutButton addWorkoutHandler={onAddWorkout} />
+        </div>{" "}
       </form>
     </div>
   );

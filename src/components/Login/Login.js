@@ -39,7 +39,7 @@ function Login() {
         const user = userCredential.user;
         console.log("valid user");
         console.log(user.email);
-        navigate("/feed");
+        navigate("/");
         // ...
       })
       .catch((error) => {
@@ -57,7 +57,7 @@ function Login() {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate("/feed");
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
