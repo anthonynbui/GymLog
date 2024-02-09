@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/GymLog/static/css/main.727e5198.css",
-    "main.js": "/GymLog/static/js/main.d97432f2.js",
+    "main.css": "/GymLog/static/css/main.926bc186.css",
+    "main.js": "/GymLog/static/js/main.b157c8d8.js",
     "static/js/787.40660134.chunk.js": "/GymLog/static/js/787.40660134.chunk.js",
+    "static/media/GymLogLogo.svg": "/GymLog/static/media/GymLogLogo.5c40ad369a95cc9fcd3b6c7c35c0a1bd.svg",
     "index.html": "/GymLog/index.html",
-    "main.727e5198.css.map": "/GymLog/static/css/main.727e5198.css.map",
-    "main.d97432f2.js.map": "/GymLog/static/js/main.d97432f2.js.map",
+    "main.926bc186.css.map": "/GymLog/static/css/main.926bc186.css.map",
+    "main.b157c8d8.js.map": "/GymLog/static/js/main.b157c8d8.js.map",
     "787.40660134.chunk.js.map": "/GymLog/static/js/787.40660134.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.727e5198.css",
-    "static/js/main.d97432f2.js"
+    "static/css/main.926bc186.css",
+    "static/js/main.b157c8d8.js"
   ]
 }
